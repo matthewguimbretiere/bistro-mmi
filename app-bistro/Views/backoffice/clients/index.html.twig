@@ -1,0 +1,50 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}Clients du bistro{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<a href="{{ url('/backoffice/clients/injection') }}" class="float-right" style="text-shadow: white 1px 0 10px;color:black"><b>Injecter des clients fictifs</b></a>
+ 	<h1 style="text-shadow: white 1px 0 10px;">Liste des {{ countClients }} clients.</h1>
+ 	<a href="{{ url('/backoffice/clients/add') }}" class="btn btn-primary">Ajouter un nouveau client</a>
+ 	<br/>
+ 	<b class="text-black" style="text-shadow: white 1px 0 10px;">Filtrer :</b>
+ 	<div class="filter btn-group m-2 bg-light" role="group" style="border-radius:5px;">
+ 		<a href="{{ url('/backoffice/clients/jour') }}" class="btn {% if filter == 'jour' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Client du jour</a>
+ 		<a href="{{ url('/backoffice/clients/semaine') }}" class="btn {% if filter == 'semaine' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Client de la semaine</a>
+ 		<a href="{{ url('/backoffice/clients/tous') }}" class="btn {% if filter == 'tous' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Tous</a>
+ 	</div>
+ 	<table class="table" style="font-size:0.95rem;background-color:white;">
+ 		<thead class="text-center">
+ 			<tr>
+ 				<th scope="col">#</th>
+ 				<th scope="col">Nom</th>
+ 				<th scope="col">Prénom</th>
+ 				<th scope="col">Email</th>
+ 				<th scope="col">Portable</th>
+ 				<th scope="col">Table/Formule</th>
+ 				<th scope="col"></th>
+ 			</tr>
+ 		</thead>
+ 		<tbody>
+ 			{% for customer in customers %}
+	 			<tr>
+	 				<th scope="row">{{ customer.id }}</th>
+	 				<td>{{ customer.lastname }}</td>
+	 				<td>{{ customer.firstname }}</td>
+	 				<td>{{ customer.email }}</td>
+	 				<td>{{ customer.phone }}</td>
+	 				<td>{{ customer.localisation_id }} / 
+	 				{% for formula in formulas %}
+	 					{% if formula.id_user == customer.id %}
+	 						{{ formula.formulaName }}</td>
+	 					{% endif %}
+	 				{% endfor %}
+	 				<td>
+	 					<a href="{{ url('/backoffice/clients/edit/') ~ customer.id }}" class="text-primary">Éditer</a>
+	 					<a href="{{ url('/backoffice/clients/delete/') ~ customer.id }}" class="text-danger">Supprimer</a>
+	 				</td>
+	 			</tr>
+	 		{% endfor %}
+ 		</tbody>
+ 	</table>
+</div>
+{% endblock %}

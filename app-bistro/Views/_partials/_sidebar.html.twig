@@ -1,0 +1,58 @@
+<nav id="sidebar">
+            <div class="sidebar-header">
+                <h3 style="font-size: 1.4rem;">Bistro BackOffice</h3>
+                <strong style="margin-top:-5px;font-size: 1.4rem;">B<br/></strong>
+                <strong style="margin-top:-10px;font-size: 1.4rem;">BO</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="{% if activItem == 'site' %}active{% endif %}">
+                    <a href="{{ url('/') }}" target="_blank">
+                        <i class="fas fa-home"></i>
+                        Le site
+                    </a>
+                </li>
+                <li class="{% if activItem == 'home' %}active{% endif %}">
+                    <a href="{{ url('/backoffice') }}">
+                        <i class="fas fa-utensils"></i>
+                        Accueil
+                    </a>
+                </li>
+                <li class="{% if activItem == 'formula' %}active{% endif %}">
+                    <a href="{{ url('/backoffice/formules') }}">
+                        <i class="fas fa-utensils"></i>
+                        Formules
+                    </a>
+                </li>
+                <li class="{% if activItem == 'table' %}active{% endif %}">
+                    <a href="{{ url('/backoffice/plan-table') }}">
+                        <i class="fas fa-table"></i>
+                        Plan de tables
+                    </a>
+                </li>
+                <li class="{% if activItem == 'clients' %}active{% endif %}">
+                    <a href="{{ url('/backoffice/clients/jour') }}">
+                        <i class="far fa-id-badge"></i>
+                        Clients
+                    </a>
+                </li>
+                <li class="{% if activItem == 'graphic' %}active{% endif %}">
+                    <a href="{{ url('/backoffice/graphique/clients') }}">
+                        <i class="fas fa-chart-bar"></i>
+                        Analyses
+                    </a>
+                </li>
+                <li class="{% if activItem == 'settings' %}active{% endif %}">
+                    <a href="{{ url('/backoffice/settings') }}">
+                        <i class="fas fa-cogs"></i>
+                        Paramètres
+                    </a>
+                </li>
+                <li class="{% if activItem == 'database' %}active{% endif %}">
+                    <a href="https://phpmyadmin.alwaysdata.com/" target="_blank">
+                        <i class="fas fa-database"></i>
+                        Base de données
+                    </a>
+                </li>
+            </ul>
+        </nav>

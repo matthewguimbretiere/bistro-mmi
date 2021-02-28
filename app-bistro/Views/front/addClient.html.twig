@@ -1,0 +1,93 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<header class="headerIndex">
+<div>
+
+<div>
+    <a href="">
+    <img src="{{ asset( '/img/logo/logolarg.png' ) }}" alt="logo bistro mmi"/>
+    </a>
+</div>
+<nav>
+	{% if userExist == true %}
+		<a href="{{ url( '/backoffice' ) }}">Backoffice </a><b style="color:black;"> |</b>
+    	<a href="{{ url( '/delog' ) }}">Se déconnecter</a>
+	{% else %}
+		<a href="{{ url( '/login' ) }}">Se connecter</a>
+	{% endif %}
+</nav>
+
+</div>
+</header>
+
+<div>
+<div id="container">
+<img src="{{ asset('/img/fond.jpg') }}" id="imgFond" class="w-100 ">
+<div>
+	<h1>Enregistrez-vous</h1>
+ 	<br/>
+ 	<form method="post" action="{{ url('/client/table') }}" class="col-10">
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Nom</span>
+		  </div>
+		  <input type="text" class="form-control" name="lastname" placeholder="Nom de famille">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Prénom</span>
+		  </div>
+		  <input type="text" class="form-control" name="firstname" placeholder="Prénom">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Adresse mail</span>
+		  </div>
+		  <input type="email" class="form-control" name="email" placeholder="exemple@domaine.fr">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Téléphone</span>
+		  </div>
+		  <input type="tel" class="form-control" name="phone" placeholder="0102030405">
+		</div>
+
+		
+		<input type="text" class="form-control" name="localisation_id" value="{{ table }}" hidden="hidden">
+		
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Formule</span>
+		  </div>
+		  <select class="form-control" name="formula_id">
+		  	{% for formula in formulas %}
+		  		<option value="{{ formula.id }}">{{ formula.name }}</option>
+		  	{% endfor %}
+		  </select>
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Date et heure d'arrivée</span>
+		  </div>
+		  <input type="text" class="form-control" name="arrival_date" placeholder="YYYY-MM-DD HH:MM:SS">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Date et heure de départ</span>
+		  </div>
+		  <input type="text" class="form-control" name="departure_date" placeholder="YYYY-MM-DD HH:MM:SS">
+		</div>
+
+	 	<button class="btn btn-primary">Ajouter</button>
+	 </form>
+</div> <!-- # END .container #-->
+</div>
+<br/>
+{% endblock %}

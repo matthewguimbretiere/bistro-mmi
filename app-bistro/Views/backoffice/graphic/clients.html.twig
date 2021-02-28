@@ -1,0 +1,72 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}Analyses des clients{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<h1 style="text-shadow: white 1px 0 10px;">Analyses du bistro</h1>
+ 	<b class="text-black" style="text-shadow: white 1px 0 10px;">Filtrer:</b>
+ 	<div class="filter btn-group m-2 bg-light" role="group" style="border-radius:5px">
+ 		<a href="{{ url('/backoffice/graphique/clients') }}" class="btn {% if filter == 'clients' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses des clients</a>
+ 		<a href="{{ url('/backoffice/graphique/formules') }}" class="btn {% if filter == 'formules' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses des formules</a>
+ 		<a href="{{ url('/backoffice/graphique/ca') }}" class="btn {% if filter == 'ca' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses du chiffre d'affaires</a>
+ 	</div>
+  <div style="background-color:white">
+ 	<canvas id="chart" class="chart" width="700" height="300"></canvas>
+ 	<!--Dates de la semaine-->
+ 	<input type="text" hidden="hidden" value="{{ dates_week.0 }}" id="date_week1">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.1 }}" id="date_week2">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.2 }}" id="date_week3">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.3 }}" id="date_week4">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.4 }}" id="date_week5">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.5 }}" id="date_week6">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.6 }}" id="date_week7">
+  </div>
+</div>
+{% endblock %}
+{% block additional_js %}
+{{ parent() }}
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="{{ asset('/jquery.easypiechart.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/chart/dist/Chart.js') }}"></script>
+	<script>
+	
+	// Analyses du bistro
+    var ctx = document.getElementById('chart').getContext('2d');
+    var date_week1 = document.getElementById('date_week1');
+    var date_week2 = document.getElementById('date_week2');
+    var date_week3 = document.getElementById('date_week3');
+    var date_week4 = document.getElementById('date_week4');
+    var date_week5 = document.getElementById('date_week5');
+    var date_week6 = document.getElementById('date_week6');
+    var date_week7 = document.getElementById('date_week7');
+
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [date_week7.value,date_week6.value,date_week5.value,date_week4.value,date_week3.value,date_week2.value,date_week1.value],
+            datasets: [{
+                label: "Clients",
+                data: [{{ datas.6 }}, {{ datas.5 }}, {{ datas.4 }}, {{ datas.3 }}, {{ datas.2 }}, {{ datas.1 }}, {{ datas.0 }}],
+                borderColor: [
+                    'rgba(227, 11, 198,1)',
+                    'rgba(227, 11, 198,1)',
+                    'rgba(227, 11, 198,1)',
+                    'rgba(125, 11, 198,1)',
+                    'rgba(227, 11, 198,1)',
+                    'rgba(227, 11, 198,1)',
+                    'rgba(227, 11, 198,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+	</script>
+{% endblock %}

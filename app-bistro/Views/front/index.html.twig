@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<header class="headerIndex">
+<div>
+
+<div>
+    <a href="">
+    <img src="{{ asset( '/img/logo/logolarg.png' ) }}" alt="logo bistro mmi"/>
+    </a>
+</div>
+<nav>
+	{% if userExist == true %}
+		<a href="{{ url( '/backoffice' ) }}">Backoffice </a><b style="color:black;"> |</b>
+    	<a href="{{ url( '/delog' ) }}">Se déconnecter</a>
+	{% else %}
+		<a href="{{ url( '/login' ) }}">Se connecter</a>
+	{% endif %}
+</nav>
+
+</div>
+</header>
+
+<div>
+<div id="container">
+<img src="{{ asset('/img/fond.jpg') }}" id="imgFond" class="w-100 ">
+<div>
+<br/>
+<h3>Voici les formules proposées :</h3>
+</div>
+  <div id="grid">
+  {% for formula in formulas %}
+  	{% if formula.enabled == 1 %} 
+	   <div>
+	    <div>
+	      <div id="img">
+	      	{% if formula.illustration != "" %}
+	       		<img src="{{ asset( '/img/illustrations/' ) ~ formula.illustration }}" alt="illustration formule">
+	       	{% endif %}
+	      </div>
+	    <h3>
+	      <span class="title"> {{ formula.name }}</span>
+	    </h3>
+	    <div>
+	    <span class="price" {% if formula.discount != 0 %}style="text-decoration:line-through;color:darkred;"{% endif %}{% if formula.discount == 0 %}style="color:green;"{% endif %}>{{ formula.price }}€</span>
+        {% if formula.discount != 0 %}
+        {% set reduction = formula.price - ( formula.discount / 100 * formula.price ) %}
+        <span class="discount bg-danger">promo {{ formula.discount }}% (<span> {{ reduction }}€ </span>)</span>
+        {% endif %}
+        </div>
+	    <p class="description" id="description" data-id="{{ formula.id }}" style="overflow-y:scroll">
+	    	{{ formula.description }}
+	    </p>
+	    </div>
+	   </div>
+	  {% endif %}
+  {% endfor %}
+  </div>
+</div> <!-- # END .container #-->
+</div>
+<br/>
+{% endblock %}

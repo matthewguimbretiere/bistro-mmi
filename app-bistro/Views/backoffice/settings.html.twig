@@ -1,0 +1,46 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}Paramètres du bistro{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<h1 style="text-shadow: white 1px 0 10px;">Liste des paramètres</h1>
+ 	<form method="post" action="{{ url('/backoffice/settings/') ~ infos.id }}" class="col-10" style="margin-left:1.5rem;margin-top:2rem">
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+			<span class="input-group-text">
+		    	<label for="bistroname" style="margin-bottom:0px;"><b>Nom du bistro : </b></label>
+		    </span>
+		  </div>
+		  <input type="text" class="form-control col-sm-3" id="bistroname" name="bistroname" value="{{ infos.bistroname }}"/>
+	 	</div>
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+			<span class="input-group-text">
+		    	<label for="bistroname" style="margin-bottom:0px;"><b>Nombre de lignes du plan de table :</b></label>
+		    </span>
+		  </div>
+		  <input type="number" class="form-control col-sm-1" id="localisation_schema_max_rows" name="localisation_schema_max_rows" value="{{ infos.localisation_schema_max_rows }}"/>
+	 	</div>
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+			<span class="input-group-text">
+		    	<label for="bistroname" style="margin-bottom:0px;"><b>Nombre de colonnes du plan de table :</b></label>
+		    </span>
+		  </div>
+		  <input type="number" class="form-control col-sm-1" id="localisation_schema_max_cols" name="localisation_schema_max_cols" value="{{ infos.localisation_schema_max_cols }}"/>
+	 	</div>
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+			<span class="input-group-text">
+		    	<label for="bistroname" style="margin-bottom:0px;"><b>Nombre de jours de conservation :</b></label>
+		    </span>
+		  	</div>
+			<input type="number" class="form-control col-sm-1" id="days_to_keep_customer" name="days_to_keep_customer" value="{{ infos.days_to_keep_customer }}"/>
+	 	</div>
+	 	<div class="form-group row">
+		    <div class="col-sm-4">
+		      <button class="btn btn-primary">Mettre à jour</button>
+		    </div>
+	 	</div>
+ 	</form>
+</div>
+{% endblock %}

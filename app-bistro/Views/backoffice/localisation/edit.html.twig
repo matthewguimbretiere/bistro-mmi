@@ -1,0 +1,31 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}plan de tables{% endblock %}
+{% block content_back %}
+<div class="container">
+	<h1>Modification de la table {{ table['name'] }}</h1>
+	<form method="post" action="{{ url('/backoffice/plan-table/editer/') ~ table['id'] }}" class="form_table p-1 d-flex justify-content-around align-items-center mb-1 col">
+		<input type="text" placeholder="nom" name="name" class="input-group w-20 p-1" value="{{ table['name'] }}" disabled="disabled">
+		<input type="number" placeholder="colonne" name="col" class="input-group w-20 p-1" value="{{ table['col'] }}">
+		<input type="number" placeholder="ligne" name="row" class="input-group w-20 p-1" value="{{ table['row'] }}">
+		<input type="number" placeholder="nbr places" name="cplace" class="input-group w-20 p-1" value="{{ table['cplace'] }}">
+		<input type="submit" value="Mettre à jour" class="btn btn-primary">
+	</form>
+	<div class="col">
+		<img src="{{ asset('/img/qrcode/') ~ table.qrcode }}" alt="Qrcode de la table"/>
+	</div>
+</div>
+{% endblock %}
+
+{% block additional_css %}
+ {{ parent() }}
+<style>
+	.form_table{
+		background-color: #607d8b ;
+		border-radius:5px;
+	}
+	.form_table input{
+		border-radius:5px;
+		border:none;
+	}
+</style>
+{% endblock %}

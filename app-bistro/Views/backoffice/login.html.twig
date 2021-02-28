@@ -1,0 +1,135 @@
+<html lang="fr">
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/ico" href="{{ asset('/img/logo/icone.png') }}" />
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<title>Page de connexion</title>
+	<style>
+	.box {
+	    width: 500px;
+	    margin: 200px 0;
+	}
+
+	.logo{
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    float: left;
+	    margin-right: -50px;
+	}
+	.shape2 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    margin-top: -30px;
+	    float: left;
+	}
+	.shape3 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    margin-top: -30px;
+	    float: left;
+	    margin-left: -31px;
+	}
+	.shape4 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    margin-top: -25px;
+	    float: left;
+	    margin-left: -32px;
+	}
+	.shape5 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    float: left;
+	    margin-right: -48px;
+	    margin-left: -32px;
+	    margin-top: -30px;
+	}
+	.shape6 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    float: left;
+	    margin-right: -20px;
+	    margin-top: -35px;
+	}
+	.shape7 {
+	    position: relative;
+	    height: 150px;
+	    width: 150px;
+	    background-color: #a55fc1;
+	    border-radius: 80px;
+	    float: left;
+	    margin-right: -20px;
+	    margin-top: -57px;
+	}
+	.float {
+	    position: absolute;
+	    z-index: 2;
+	}
+
+	.form {
+	    margin-left: 145px;
+	}
+
+	#imgFond {
+	  z-index: -99;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  height: auto;
+	}
+	</style>
+</head>
+<body>
+	<!------ Include the above in your HEAD tag ---------->
+	<img src="{{ asset('/img/fond.jpg') }}" id="imgFond" class="w-100 ">
+	<div class="container">
+	    <div id="login-row" class="row justify-content-center align-items-center">
+	        <div id="login-column" class="col-md-6">
+	            <div class="box">
+	                <a href="{{ url('/') }}" style="z-index:2;"><img src="{{ asset( '/img/logo/icone.png' ) }}" class="logo" alt"logo bistrommi" style="z-index:3;"/></a>
+	                <div class="shape2"></div>
+	                <div class="shape3"></div>
+	                <div class="shape4"></div>
+	                <div class="shape5"></div>
+	                <div class="shape6"></div>
+	                <div class="shape7"></div>
+	                <div class="float">
+	                    <form class="form" action="" method="post">
+	                        <div class="form-group">
+	                            <label for="pseudo" class="text-white">Pseudo :</label><br>
+	                            <input type="text" name="pseudo" id="pseudo" class="form-control">
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="password" class="text-white">Mot de passe :</label><br>
+	                            <input type="password" name="password" id="password" class="form-control">
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="submit" name="submit" class="btn btn-light btn-md" style="background-color:#630b86;color:white" value="se connecter">
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

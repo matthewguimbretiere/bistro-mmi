@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+{% block title %}404{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;font-size:4rem">
+    <div class="wrapper text-center">
+        <h1 class="display-4">404</h1>
+        <p>la page n'existe pas.</p>
+        <a href="{{ url( '/' )  }}" class="btn btn-secondary">
+            retour à l'accueil
+        </a>
+    </div>
+</div>
+{% endblock %}

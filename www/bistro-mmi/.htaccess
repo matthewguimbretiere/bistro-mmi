@@ -1,0 +1,11 @@
+# empêche la visualisation de l'arborescence dans un dossier
+Options -Indexes
+
+# active le module de réécriture d'URL
+RewriteEngine On
+
+# Toutes les URL vont être dirigées vers le fichier index.php
+# sauf les URL qui correspondent à un fichier existant
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]

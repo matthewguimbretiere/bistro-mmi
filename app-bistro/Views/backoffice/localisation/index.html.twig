@@ -1,0 +1,119 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}plan de tables{% endblock %}
+{% block content_back %}
+<div class="container">
+<h1 style="text-shadow: white 1px 0 10px;">Plan des tables</h1>
+  <form id="formulaire" method="post" action="{{ url('/backoffice/plan-table/ajouter') }}" enctype="multipart/form-data">
+    <div class="col-sm-3" style="padding-right:0px;">
+		<input type="text" class="form-control" id="name" name="name" placeholder="Nom"/>
+	</div>
+    <div class="col-sm-2" style="padding-right:0px;">
+		<input type="number" class="form-control" id="col" name="col" placeholder="Colonne"/>
+	</div>
+    <div class="col-sm-2" style="padding-right:0px;">
+		<input type="number" class="form-control" id="row" name="row" placeholder="Ligne"/>
+	</div>
+    <div class="col-2" style="padding-right:0px;">
+		<input type="number" class="form-control" id="cplace" name="cplace" placeholder="Nbre Places"/>
+	</div>
+    <div class="col-2" style="padding-right:0px;">
+    	<button type="submit" class="btn btn-outline-info" style="background-color:#a55fc1;color:white;"><i class="fas fa-check"></i> Ajouter</button>
+    </div>
+  </form>
+	<div id="tables" style="margin-bottom:90px;height: 50vh; display: grid;grid-template-columns: repeat({{ parameters[0].localisation_schema_max_cols }}, 1fr); grid-template-rows: repeat({{ parameters[0].localisation_schema_max_rows }}, 1fr); grid-column-gap: 5px;  grid-row-gap: 5px;">
+		{% for row in 1..parameters[0].localisation_schema_max_rows %}
+			{% for col in 1..parameters[0].localisation_schema_max_cols %}
+				{% set table = getTable(tables, row, col) %}
+				<div class="cell  {% if table %}occupied{% endif %} d-flex flex-row justify-content-around flex-wrap" id="table-{{ row }}-{{ col }}">
+					{% if table %}
+						<span class="table_name w-100" style="font-size:0.8rem;text-align:left;color:white;">{{ table['name']}} [ {{ table['cplace'] }} ]</span>
+						<span class="table_delete" data-id="{{ table['id'] }}" data-name="{{ table['name'] }}">
+							<i class="fas fa-trash-alt text-white"></i>
+						</span>
+						<span class="table_edit text-primary" data-id="{{ table['id'] }}">
+							<a href="{{ url('/backoffice/plan-table/editer/') ~ table['id'] }}">
+								<i class="fas fa-edit" style="color:white;"></i>
+							</a>
+						</span>
+					{% endif %}
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
+</div>
+<script>
+	var btnDel = document.querySelectorAll('.table_delete');
+	var nbrTables = document.querySelector('#nbrTables');
+
+	btnDel.forEach(function( elem ) {
+		elem.addEventListener('click', function(){
+			if(window.confirm('Souhaitez-vous vraiment supprimer ' + this.dataset.name + " ?")) {				
+				const url = "{{ url('/backoffice/plan-table/effacer/') }}" + this.dataset.id;
+				fetch(url);
+				this.closest(".cell").classList.remove("occupied");
+				this.closest(".cell").innerHTML = "";
+				nbrTables.innerHTML = nbrTables.innerHTML - 1;
+			}
+		})
+	})
+</script>
+{% endblock %}
+{% block additional_css %}
+ {{ parent() }}
+
+<style>
+    h1{
+        margin-bottom:-50px;
+    }
+    .table_name {
+        position:absolute;
+        left:26%;
+    }
+    .table_delete {
+        position:absolute;
+        bottom:0px;
+        left:2.5px;
+    }
+    .table_delete:hover {
+        cursor:pointer;
+    }
+    .table_edit {
+        position:absolute;
+        bottom:0px;
+        right:2.5px;
+    }
+    #imgFond {
+        z-index: -99;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: auto;
+    }
+    #tables {
+        margin-top:1vh;
+        height:70vh;
+        display: grid;
+        grid-template-columns: repeat({{ parameters[0].localisation_schema_max_cols}},1fr);
+        grid-template-rows: repeat({{ parameters[0].localisation_schema_max_rows}}, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+    .cell {
+        box-shadow: 0px 0px 3px black;
+        background-color: #a55fc1;
+        width: 98%;
+        height: 94%;
+        position: relative;
+        text-align:center;
+    }
+    #formulaire {
+        margin-top:9.5vh;
+        height:10vh;
+        background-color:#630a86;
+        display:flex;
+        align-items:center;
+        border-radius:2px;
+    }
+</style>
+ {% block additional_back_css %}{% endblock %}
+{% endblock %}

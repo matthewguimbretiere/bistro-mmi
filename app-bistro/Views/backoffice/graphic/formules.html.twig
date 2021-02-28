@@ -1,0 +1,95 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}Analyse des formules{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<h1 style="text-shadow: white 1px 0 10px;">Analyses du bistro</h1>
+ 	<b class="text-black" style="text-shadow: white 1px 0 10px;">Filtrer:</b>
+ 	<div class="filter btn-group m-2 bg-light" role="group" style="border-radius:5px">
+ 		<a href="{{ url('/backoffice/graphique/clients') }}" class="btn {% if filter == 'clients' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses des clients</a>
+ 		<a href="{{ url('/backoffice/graphique/formules') }}" class="btn {% if filter == 'formules' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses des formules</a>
+ 		<a href="{{ url('/backoffice/graphique/ca') }}" class="btn {% if filter == 'ca' %} btn-secondary {% else %} btn-outline-secondary {% endif %}">Analyses du chiffre d'affaires</a>
+ 	</div>
+  <div style="background-color:white">
+ 	<canvas id="chart" class="chart" width="700" height="300"></canvas>
+ 	<!--Dates de la semaine-->
+ 	<input type="text" hidden="hidden" value="{{ dates_week.0 }}" id="date_week1">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.1 }}" id="date_week2">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.2 }}" id="date_week3">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.3 }}" id="date_week4">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.4 }}" id="date_week5">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.5 }}" id="date_week6">
+ 	<input type="text" hidden="hidden" value="{{ dates_week.6 }}" id="date_week7">
+ 	<input type="text" hidden="hidden" value="{{ countDatas }}" id="countDatas">
+ 	<!--Datas des formules-->
+ 	<!-- Nom des formules -->
+ 	{% set i = 0 %}
+ 	{% for data in datas %}	
+ 		{% set i = i + 1 %}
+ 		<input type="text" hidden="hidden" value="{{ data.name }}" id="nameFormula{{ i }}">
+ 		{% set j = 0 %}
+ 		{% for compteur in data.datas %}
+ 			{% set j = j + 1 %}
+ 			<input type="text" hidden="hidden" value="{{ compteur.count }}" id="countFormula{{ i }}_{{ j }}">
+ 		{% endfor %}
+ 	{% endfor %}
+</div>
+{% endblock %}
+{% block additional_js %}
+{{ parent() }}
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="{{ asset('/jquery.easypiechart.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/chart/dist/Chart.js') }}"></script>
+	<script>
+	
+	// Analyses du bistro
+    var ctx = document.getElementById('chart').getContext('2d');
+    var date_week1 = document.getElementById('date_week1');
+    var date_week2 = document.getElementById('date_week2');
+    var date_week3 = document.getElementById('date_week3');
+    var date_week4 = document.getElementById('date_week4');
+    var date_week5 = document.getElementById('date_week5');
+    var date_week6 = document.getElementById('date_week6');
+    var date_week7 = document.getElementById('date_week7');
+    var countDatas = document.getElementById('countDatas');
+    
+    var datasets = [];
+    var nomsFormules = [];
+
+ 	for(let i = 1; i <= countDatas.value; i++) {
+ 		var datas = [];
+ 		var couleur1 = Math.floor(Math.random() * (255 - 0) + 0);
+ 		var couleur2 = Math.floor(Math.random() * (255 - 0) + 0);
+ 		var couleur3 = Math.floor(Math.random() * (255 - 0) + 0);
+
+ 		for(let j = 7; j >= 1; j-- ) {
+ 			datas.push($('#countFormula' + i + "_" + j).val());
+ 		}
+		datasets.push({
+			label: $('#nameFormula' + i).val(),
+			data: datas,
+			borderColor: [
+                'rgba('+couleur1+','+ couleur2 +','+ couleur3+',1)'
+            ],
+            backgroundColor : 'rgba('+couleur1+','+ couleur2 +','+ couleur3+',0.5)',
+            borderWidth: 1
+		})
+ 	}
+    
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [date_week7.value,date_week6.value,date_week5.value,date_week4.value,date_week3.value,date_week2.value,date_week1.value],
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+	</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}Modifier un client{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<h1>Modifier {{ customer.lastname }} {{ customer.firstname }}</h1>
+ 	<a href="{{ url('/backoffice/clients/jour') }}" class="btn btn-primary">Annuler</a>
+ 	<br/><br/>
+ 	<form method="post" action="{{ url('/backoffice/clients/edit/') ~ customer.id }}" class="col-10">
+	 	<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Nom</span>
+		  </div>
+		  <input type="text" class="form-control" name="lastname" value="{{ customer.lastname }}">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Prénom</span>
+		  </div>
+		  <input type="text" class="form-control" name="firstname" value="{{ customer.firstname }}">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Adresse mail</span>
+		  </div>
+		  <input type="email" class="form-control" name="email" value="{{ customer.email }}">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Téléphone</span>
+		  </div>
+		  <input type="tel" class="form-control" name="phone" value="{{ customer.phone }}">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Table</span>
+		  </div>
+		  <input type="number" class="form-control" name="localisation_id" value="{{ customer.localisation_id }}">
+		</div>
+
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">Formule</span>
+		  </div>
+		  <input type="number" class="form-control" name="formula_id" value="{{ customer.formula_id }}">
+		</div>
+
+	 	<button class="btn btn-primary">Mettre à jour</button>
+	 </form>
+</div>
+{% endblock %}

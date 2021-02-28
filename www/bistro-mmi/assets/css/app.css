@@ -1,0 +1,282 @@
+html {
+  font-size: 20px
+}
+.w-10 {
+  width: 10% !important
+}
+
+.w-15 {
+  width: 15% !important
+}
+
+.w-20 {
+  width: 20% !important
+}
+
+.w-30 {
+  width: 30% !important
+}
+
+.w-40 {
+  width: 40% !important
+}
+
+.w-60 {
+  width: 60% !important
+}
+
+.w-70 {
+  width: 70% !important
+}
+
+.w-80 {
+  width: 80% !important
+}
+
+.w-90 {
+  width: 90% !important
+}
+.w-100 {
+  width: 100% !important
+}
+#imgFond {
+  z-index: -99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+}
+.headerIndex {
+	background-color:#ffc37e;
+	box-shadow:0 1px 1px #ccc;
+	padding: 20px 40px;
+	height: 120px;
+	color: #ffffff;
+	box-sizing: border-box;
+	top:-100px;
+}
+
+.headerIndex>div {
+	max-width: 1200px;
+	text-align: center;
+  margin: 0 auto;
+  height:100%;
+  width:100%;
+}
+
+.headerIndex>div>div {
+	float: left;
+  height:100%;
+}
+
+.headerIndex img{
+  height:140%;
+  margin-top:-17px;
+}
+
+.headerIndex nav {
+  font-size:27px;
+	line-height: 85px;
+	float: right;
+}
+
+.headerIndex nav a {
+	color: #3b3b3b;
+  font-weight:bold;
+  text-decoration: none;
+  transition-duration: 0.2s
+}
+
+.headerIndex nav a:hover {
+	color: white;
+  font-weight:bold;
+  text-decoration: none;
+}
+
+header+div{
+  display: flex;
+  justify-content: center;
+}
+
+#container{
+width:80vw;
+}
+
+#containeur>div{
+  display:inline-block;
+}
+
+#grid{
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-auto-flow: row;
+}
+
+#img{
+  width:100%;
+  height:240px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#img>img{
+  width: 110%;
+  transition-duration: 0.2s
+}
+
+#grid>div>div:hover img{
+  width: 100%;
+}
+
+#grid>div{
+  height:460px;
+  width:100%;
+  padding:15px;
+  display:flex;
+  justify-content: center;
+}
+
+#grid>div>div{
+  height:100%;
+  width:100%;
+  background-color:#fdbaba;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 10px 5px 5px black;
+}
+
+#grid h3{
+  text-align:center;
+  margin-bottom:0px;
+
+}
+
+h3 div{
+  display:inline-block;
+}
+
+.price{
+  font-size:35px;
+  padding:15px 20px;
+  top:-50px;
+}
+
+.discount{
+  font-size:27px;
+}
+
+.description{
+  font-size:18px;
+  padding:5px 15px;
+  text-align: justify;
+  line-height: 20px;
+ height:100px;
+}
+
+/*--------------------PAGE DE CONNEXION---------------------*/
+
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+/*-----------------Couleurs------------------*/
+.text-grey {
+  color: grey;
+}
+.text-pink {
+  color: #dd7777;
+}
+.categAnalyses i {
+    border-radius: 50%;
+    width: 3.5vw;
+    height: 3.5vw;
+}
+.categAnalyses .fa-dollar-sign, .categCA {
+    border:1px solid #dd7777;
+}
+.categAnalyses {    
+  height: 40vh;
+  position: relative;
+}
+.categAnalyses i {
+  position: absolute;
+  top: calc(-3.5vw / 2);
+}
+.categAnalyses li {
+  list-style-type: none;
+}
+.formSearch {
+  border-radius: 5px;
+}
+/*----------Plan table---------*/
+.cell {
+  box-shadow: 0px 0px 3px black;
+  background-color: #a55fc1;
+  width: 103%;
+  height: 105%;
+  position: relative;
+  text-align:center;
+  margin-bottom: 40px;
+}
+.occupied {
+  background-color: #a55fc1;
+}
+.form_table{
+  background-color: #607d8b ;
+  border-radius:5px;
+}
+.form_table input{
+  border-radius:5px;
+  border:none;
+}
+.table_delete:hover {
+  cursor:pointer;
+}
+
+#img+h3+div{
+  display:flex;
+  align-items: center;
+  margin-top:-25px;
+  margin-bottom:-18px;
+}
+
+.price{
+  font-size:35px;
+  padding:15px 25px;
+  margin-top:10px;
+  margin-bottom:5px;
+  display:block;
+  transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  -webkit-transform: rotate(-8deg);
+  -khtml-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  font-weight:bold
+}
+
+.discount{
+  font-size:27px;
+  display:block;
+  padding:0px 7px 5px 7px;
+  margin-top:10px;
+  border-radius: 0.5rem;
+  color:white;
+}
+#lesClientsRecherches {
+  border-radius: 0 0 5px 5px;
+}

@@ -1,0 +1,49 @@
+{% extends 'backoffice/layout.html.twig' %}
+{% block title %}test sur page backoffice{% endblock %}
+{% block content_back %}
+<div class="container">
+ 	<h1 style="text-shadow: white 1px 0 10px;">Tableau de bord</h1>
+ 	<div class="analysesAccueil d-flex flex-column align-items-center">
+ 		<!--Analyses-->
+ 		<div class="w-90 d-flex flex-row justify-content-around align-items-start text-center pt-5 pb-5">
+ 			<!--Chiffre d'affaire veille-->
+ 			<div class="categAnalyses categCA pt-5 w-20 d-flex flex-column justify-content-start align-items-center text-pink bg-white">
+ 				<i class="fas fa-dollar-sign h3 d-flex flex-row justify-content-center align-items-center bg-white"></i>
+ 				<h3>CA veille</h3>
+ 				<h1>{{ caVeille }} €</h1>
+ 			</div>
+ 			<!--Nombre de clients aujourd'hui-->
+ 			<div class="categAnalyses pt-5 border border-1 border-info w-20 text-info d-flex flex-column justify-content-start align-items-center bg-white">
+ 				<i class="fas fa-users h3 border border-1 border-info d-flex flex-row justify-content-center align-items-center bg-white"></i>
+ 				<h3>Clients</h3>
+ 				<p class="text-grey">Clients du jour</p>
+ 				<h1>{{ nbrClients }}</h1>
+ 			</div>
+ 			<!--Formules du jour-->
+ 			<div class="categAnalyses pt-5 border border-1 border-secondary w-50 d-flex flex-column justify-content-start align-items-center bg-white text-secondary">
+ 				<i class="fas fa-utensils h3 border border-1 border-secondary d-flex flex-row justify-content-center align-items-center bg-white"></i>
+ 				<h3>Formules</h3>
+ 				<p>Formules du jour</p>
+ 				<ul>
+ 					{% for formula in formulas %}
+ 						<li><b class="badge badge-primary">{{ formula.id }}</b> {{ formula.name }}</li>
+ 					{% endfor %}
+ 				</ul>
+ 			</div>
+ 		</div>
+ 		<!--Recherche clients-->
+ 		<div class="formSearch input-group bg-secondary w-80 p-2">
+ 			<div class="input-group-prepend">
+    			<span class="input-group-text">Email et date:</span>
+  			</div>
+ 			<input type="email" name="email" id="email" class="form-control" placeholder="exemple@domain">
+ 			<input type="text" name="arrival_date" id="arrival_date" class="form-control" placeholder="YYYY-MM-DD">
+ 			<button class="btn btn-primary">Rechercher</button>
+ 		</div>
+ 		<!--affichage des clients recherchés-->
+ 		<div>
+ 			<ul id="lesClientsRecherches" class="text-white bg-secondary pr-2"></ul>
+ 		</div>
+ 	</div>
+</div>
+{% endblock %}
